@@ -26,8 +26,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#eee"
+    //borderBottomWidth: 1,
+    borderBottomColor: "#eee",
+    backgroundColor: "#eee",
+    marginBottom: 5,
+    borderRadius: 5,
+    padding: 15
   },
   amount: { fontWeight: "bold" }
 });

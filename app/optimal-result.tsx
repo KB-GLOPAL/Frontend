@@ -1,9 +1,10 @@
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function OptimalResultScreen() {
   const router = useRouter();
+  const { store, amount, category } = useLocalSearchParams();
 
   // 더미 데이터
   const cardName = "트래블러스 체크카드";
@@ -34,7 +35,7 @@ export default function OptimalResultScreen() {
       <Text style={styles.cardName}>{cardName}</Text>
 
       {/* 결제 금액 */}
-      <Text style={styles.amount}>{amountJPY}</Text>
+      <Text style={styles.amount}>{amount}</Text>
 
       {/* 예상 결제 금액 (한화) */}
       <View style={styles.amountRow}>
