@@ -1,9 +1,11 @@
+import { useRouter } from "expo-router";
 import React from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import CardCarousel from "../components/CardCarousel";
 import ExpenseList from "../components/ExpenseList";
 
 export default function HomeScreen() {
+  const router = useRouter();
   const country = "일본"; // 더미 데이터
 
   return (
@@ -18,7 +20,8 @@ export default function HomeScreen() {
       <CardCarousel />
 
       {/* 최적 결제 수단 찾기 버튼 */}
-      <TouchableOpacity style={styles.optimalButton}>
+      <TouchableOpacity style={styles.optimalButton}
+      onPress={() => router.push("./optimal-payment")}>
         <Text style={styles.optimalButtonText}>최적 결제 수단 찾기</Text>
       </TouchableOpacity>
 
