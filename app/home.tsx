@@ -28,14 +28,16 @@ export default function HomeScreen() {
       {/* 지출 내역 */}
       <View style={styles.expenseHeader}>
         <Text style={styles.sectionTitle}>지출 내역</Text>
-        <TouchableOpacity>
+        <TouchableOpacity
+        onPress={() => router.push("./expenses")}>
           <Text style={styles.moreText}>더보기</Text>
         </TouchableOpacity>
       </View>
       <ExpenseList />
 
       {/* 지출 내역 추가 버튼 */}
-      <TouchableOpacity style={styles.addButton}>
+      <TouchableOpacity style={styles.addButton}
+      onPress={() => router.push("./add-expense")}>
         <Text style={styles.addButtonText}>+</Text>
       </TouchableOpacity>
 
@@ -48,25 +50,27 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fff", padding: 16 },
-  header: { alignItems: "center", paddingVertical: 12, backgroundColor: "#FFBC00", borderRadius: 8 },
-  headerText: { fontSize: 20, fontWeight: "bold", color: "#fff" },
-  sectionTitle: { fontSize: 18, fontWeight: "bold", marginTop: 20, marginBottom: 8 },
-  optimalButton: { backgroundColor: "#FFBC00", padding: 14, borderRadius: 8, alignItems: "center", marginTop: 12 },
+  container: { flex: 1, backgroundColor: "#fff",padding: 16  },
+  header: { alignItems: "center", paddingVertical: 12, backgroundColor: "#FFBC00", borderRadius: 30 },
+  headerText: { fontSize: 20, fontWeight: "bold", color: "#000000ff" },
+  sectionTitle: { fontSize: 15, fontWeight: "bold", marginTop: 20, marginBottom: 5 },
+  optimalButton: { backgroundColor: "#FFBC00", padding: 14, borderRadius: 8, alignItems: "center", marginTop: 30 },
   optimalButtonText: { color: "#fff", fontSize: 16, fontWeight: "bold" },
   expenseHeader: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 20 },
-  moreText: { color: "#FFBC00", fontWeight: "bold" },
+  moreText: { color: "#000000ff", marginTop: 20 },
   addButton: {
-    backgroundColor: "#FFBC00",
-    width: 50,
-    height: 50,
+    borderStyle: "solid",
+    borderWidth: 2,
+    borderColor: "#000000",
+    width: 35,
+    height: 35,
     borderRadius: 25,
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
-    marginTop: 12
+    marginTop: 15
   },
-  addButtonText: { fontSize: 28, color: "#fff", fontWeight: "bold" },
+  addButtonText: { fontSize: 28, color: "#000000ff", fontWeight: "bold", marginBottom:7 },
   reportButton: {
     backgroundColor: "#FFBC00",
     padding: 14,

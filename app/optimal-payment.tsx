@@ -48,7 +48,12 @@ export default function OptimalPaymentScreen() {
       {/* 분석 버튼 */}
       <TouchableOpacity
         style={styles.analyzeButton}
-        onPress={() => router.push("./optimal-result")} // 결과 화면 경로 (추후 생성)
+        onPress={() =>
+          router.push({
+            pathname: "/optimal-result",
+            params: { store, amount, category },
+          })
+        }
       >
         <Text style={styles.analyzeButtonText}>분석</Text>
       </TouchableOpacity>
