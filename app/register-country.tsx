@@ -1,15 +1,25 @@
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    Image,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from "react-native";
 
 export default function RegisterCountryScreen() {
+  const router = useRouter();
   const [country, setCountry] = useState("");
+
+  const [map, setMap] = useState<"korea" | "japan">("korea");
+
+  const showJapanMap = () => setMap("japan");
+
+   const onComplete = () => {
+    router.push("/home");
+   };
 
   return (
     <View style={styles.container}>
@@ -27,11 +37,12 @@ export default function RegisterCountryScreen() {
             placeholder="국가를 입력하세요"
             value={country}
             onChangeText={setCountry}
+            onSubmitEditing={showJapanMap}
           />
         </View>
 
         {/* 현재 위치로 찾기 버튼 */}
-        <TouchableOpacity style={styles.locationButton}>
+        <TouchableOpacity style={styles.locationButton} onPress={showJapanMap}>
           <Image
             source={require("../assets/location-sharp.png")}
             style={styles.locationIcon}
@@ -42,9 +53,18 @@ export default function RegisterCountryScreen() {
 
       {/* 지도 (임시 이미지) */}
       <Image
-        source={require("../assets/images/icon.png")}
+        source={
+            map === "korea"
+              ? require("../assets/korea-map.png")
+              : require("../assets/japan-map.png")
+          }
         style={styles.mapImage}
       />
+
+      {/* 등록 버튼 */}
+      <TouchableOpacity style={styles.completeButton} onPress={onComplete}>
+          <Text style={styles.completeText}>등록</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -113,5 +133,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#eee",
     marginTop: 40,
     marginBottom: 50
+  },
+  completeButton: {
+    backgroundColor: "#FFBC00",
+    paddingVertical: 14,
+    borderRadius: 8,
+    alignItems: "center",
+    width: "100%",
+  },
+  completeText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 16,
   },
 });
