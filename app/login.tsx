@@ -1,5 +1,5 @@
-import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import React, { useEffect, useState } from "react";
 import {
   Alert,
   Image,
@@ -12,8 +12,17 @@ import {
 
 export default function LoginScreen() {
     const router = useRouter();
+    const { notice } = useLocalSearchParams<{ notice?: string }>();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    useEffect(() => {
+    if (notice === "signed_up") {
+      setTimeout(() => {
+        Alert.alert("회원가입 완료!", "이메일로 로그인해 주세요.");
+      }, 0);
+    }
+  }, [notice]);
 
     const onSignIn = () => {
     if (!email.trim() || !password.trim()) {
