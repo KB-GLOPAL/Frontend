@@ -1,17 +1,23 @@
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 export default function RegisterCardScreen() {
+  const router = useRouter();
   const [cardName, setCardName] = useState("");
   const [cardBrand, setCardBrand] = useState("");
   const [cardType, setCardType] = useState("");
+
+  const onRegister = () => {
+    router.push("/register-country");
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -46,7 +52,7 @@ export default function RegisterCardScreen() {
       </View>
 
       {/* 등록 버튼 */}
-      <TouchableOpacity style={styles.registerButton}>
+      <TouchableOpacity style={styles.registerButton} onPress={onRegister}>
         <Text style={styles.registerText}>등록</Text>
       </TouchableOpacity>
     </ScrollView>

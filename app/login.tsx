@@ -1,18 +1,36 @@
-import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import React, { useEffect, useState } from "react";
 import {
-    Image,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 export default function LoginScreen() {
     const router = useRouter();
+    const { notice } = useLocalSearchParams<{ notice?: string }>();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    useEffect(() => {
+    if (notice === "signed_up") {
+      setTimeout(() => {
+        Alert.alert("회원가입 완료!", "이메일로 로그인해 주세요.");
+      }, 0);
+    }
+  }, [notice]);
+
+    const onSignIn = () => {
+    if (!email.trim() || !password.trim()) {
+      Alert.alert("안내", "이메일과 비밀번호를 입력해 주세요.");
+      return;
+    }
+    router.replace("/register-card");
+  };
 
   return (
     <View style={styles.container}>
@@ -45,7 +63,7 @@ export default function LoginScreen() {
         />
 
         {/* Sign In */}
-        <TouchableOpacity style={styles.signInButton}>
+        <TouchableOpacity style={styles.signInButton}  onPress={onSignIn}>
           <Text style={styles.buttonText}>Sign In</Text>
         </TouchableOpacity>
 

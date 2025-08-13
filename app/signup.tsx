@@ -1,16 +1,28 @@
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    Image,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 export default function SignUpScreen() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const onSignUp = async () => {
+    try {
+      router.replace({ pathname: "/login", params: { notice: "signed_up" } });
+    } catch (e: any) {
+      Alert.alert("회원가입 실패", e?.response?.data?.message ?? e.message);
+    }
+  };
+
 
   return (
     <View style={styles.container}>
@@ -42,8 +54,8 @@ export default function SignUpScreen() {
           onChangeText={setPassword}
         />
 
-        {/* Sign In */}
-        <TouchableOpacity style={styles.signInButton}>
+        {/* Sign Up */}
+        <TouchableOpacity style={styles.signInButton} onPress={onSignUp}>
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
 
